@@ -1,0 +1,346 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Job Recruiter Dashboard UI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+<link rel="stylesheet" href="{% static 'css/admin-page-report.css' %}">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="app-container">
+  <div class="app-left">
+    <button class="close-menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="app-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2">
+        <line x1="18" y1="20" x2="18" y2="10"/>
+        <line x1="12" y1="20" x2="12" y2="4"/>
+        <line x1="6" y1="20" x2="6" y2="14"/>       </svg>
+      <span>Recruiter</span>
+    </div>
+    <ul class="nav-list">
+      <li class="nav-list-item">
+        <a class="nav-list-link" href="job">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          Jobs
+        </a>
+      </li>
+      <li class="nav-list-item">
+        <a class="nav-list-link" href="team/admin">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Team
+        </a>
+      </li>
+      <li class="nav-list-item active">
+        <a class="nav-list-link" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pie-chart"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+          Reports
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="app-main">
+    <div class="main-header-line">
+      <h1>Applications Dashboard</h1>
+      <div class="action-buttons">
+        <button class="open-right-area">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </button>
+      <button class="menu-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      </div>
+    </div>
+    <div class="chart-row three">
+
+      <div class="chart-container-wrapper">
+        <div class="chart-container"  style='min-height:125px;'>
+          <div class="chart-info-wrapper">
+              <h2>All time views</h2>
+              <span>20.5 K</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-container-wrapper">
+        <div class="chart-container">
+          <div class="chart-info-wrapper">
+            <h2>This month views</h2>
+            <span>5.5 K</span>
+          </div>
+          <div class="chart-svg">
+            <svg viewBox="0 0 36 36" class="circular-chart blue">
+      <path class="circle-bg" d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+      <path class="circle" stroke-dasharray="60, 100" d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+      <text x="18" y="20.35" class="percentage">60%</text>
+    </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-container-wrapper">
+        <div class="chart-container">
+          <div class="chart-info-wrapper">
+            <h2>This week views</h2>
+            <span>10.5 K</span>
+          </div>
+           <div class="chart-svg">
+            <svg viewBox="0 0 36 36" class="circular-chart orange">
+      <path class="circle-bg" d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+      <path class="circle" stroke-dasharray="90, 100" d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+      <text x="18" y="20.35" class="percentage">90%</text>
+    </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chart-row two">
+      <div class="chart-container-wrapper big">
+
+
+        <div class="chart-container">
+          <div class="chart-container-header">
+            <h2>All views</h2>
+            <span>Last 30 days</span>
+          </div>
+          <div class="line-chart">
+            <canvas id="month-chart"></canvas>
+          </div>
+          <div class="chart-data-details">
+            <div class="chart-details-header"></div>
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <div class="chart-container-header">
+            <h2>Topic views</h2>
+            <span>Last 30 days</span>
+          </div>
+          <div class="line-chart">
+            <canvas id="month-topic-chart"></canvas>
+          </div>
+          <div class="chart-data-details">
+            <div class="chart-details-header"></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="chart-container-wrapper small">
+        
+        <div class="chart-container">
+          <div class="chart-container-header">
+            <h2>Views</h2>
+            <span>Last 7 days</span>
+          </div>
+          <div class="line-chart">
+            <canvas id="week-chart"></canvas>
+          </div>
+          <div class="chart-data-details">
+            <div class="chart-details-header"></div>
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <div class="chart-container-header">
+            <h2>Views</h2>
+            <span>Last 12 months</span>
+          </div>
+          <div class="line-chart">
+            <canvas id="year-chart"></canvas>
+          </div>
+          <div class="chart-data-details">
+            <div class="chart-details-header"></div>
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <div class="chart-container-header">
+            <h2>Topic views</h2>
+            <span>Last 7 days</span>
+          </div>
+          <div class="line-chart">
+            <canvas id="week-topic-chart"></canvas>
+          </div>
+          <div class="chart-data-details">
+            <div class="chart-details-header"></div>
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <div class="chart-container-header">
+            <h2>Topic views</h2>
+            <span>Last 12 months</span>
+          </div>
+          <div class="line-chart">
+            <canvas id="year-topic-chart"></canvas>
+          </div>
+          <div class="chart-data-details">
+            <div class="chart-details-header"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+
+
+</div>
+<!-- partial -->
+<script>
+  function convert_str_obj(rawData){
+    rawData = rawData.replaceAll("\'",'\"');
+    rawData = rawData.replace("ObjectId(", '');
+    rawData = rawData.replace(")", '');
+    return JSON.parse(rawData);
+  }
+  const rawUserData = "{{user_data | safe }}";
+  console.log(rawUserData);
+  const userData = convert_str_obj(rawUserData);
+  const rawColorData = "{{topic_color | safe}}"
+  const colorData = convert_str_obj(rawColorData);
+  console.log(userData);
+  console.log(colorData);
+
+  const d = new Date();
+  const date = d.getDay();
+
+  /// week data
+  if (d.getDay() == 0){
+    var startWeekDay = new Date(d.getTime() - (7-1)*86400*1000);
+    var endWeekDay = d;
+  }
+  else{
+    var startWeekDay = new Date(d.getTime() - (date-1)*86400*1000);
+    var endWeekDay = new Date(d.getTime() + (7-date)*86400*1000);
+  }
+  /// month data
+  var firstDayOfMonth = new Date(d.getFullYear(), d.getMonth(),1);
+  var lastDayOfMonth = new Date(d.getFullYear(), d.getMonth()+1, 0);
+
+  function getDaysInMonth(year, month) {
+    let date = new Date(year, month, 1);
+    let days = [];
+    while (date.getMonth() === month) {
+      const tempoDate = new Date(date)
+      days.push(String(tempoDate.getDate())+"/"+String(tempoDate.getMonth()));
+      date.setDate(date.getDate() + 1);
+    }
+    return days;
+  }
+  const allDaysInMonth = getDaysInMonth(d.getFullYear(),d.getMonth());
+
+  /// year data
+  
+  var weekViewData = new Array(7);for (let i=0; i<7; ++i) weekViewData[i] = 0;
+  var monthViewData = new Array(31);for (let i=0; i<31; ++i) monthViewData[i] = 0;
+  var yearViewData = new Array(12);for (let i=0; i<12; ++i) yearViewData[i] = 0;
+  for (const thatDay in userData.date_views_history){
+    const date = new Date(thatDay);
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const day = date.getDate();
+    const views = userData.date_views_history[thatDay].views;
+
+    // week
+    if (   year >= startWeekDay.getFullYear()
+        && month >= startWeekDay.getMonth()
+        && day >= startWeekDay.getDate()
+        && year <= endWeekDay.getFullYear()
+        && month <= endWeekDay.getMonth()
+        && day <= endWeekDay.getDate() 
+    ){
+      pos = Math.ceil((date.getTime()-startWeekDay.getTime())/(86400*1000));
+      weekViewData[pos] = views;
+    };
+    
+    // month
+    if (   year >= firstDayOfMonth.getFullYear()
+        && month >= firstDayOfMonth.getMonth()
+        && day >= firstDayOfMonth.getDate()
+        && year <= lastDayOfMonth.getFullYear()
+        && month <= lastDayOfMonth.getMonth()
+        && day <= lastDayOfMonth.getDate() 
+    ){
+      pos = Math.ceil((date.getTime()-firstDayOfMonth.getTime())/(86400*1000));
+      monthViewData[pos] = views;
+    }
+
+    yearViewData[month] += views;
+  }
+  //console.log(weekViewData);
+  //console.log(monthViewData);
+  //console.log(yearViewData);
+  
+  ///// tags
+  userData.views_by_tags.hot = 0;
+  var totalTags = Object.values(userData.views_by_tags).reduce((a, b) => a + b, 0);
+
+  // favourite circle
+  const maxViewTag = Object.keys(userData.views_by_tags).reduce((a, b) => userData.views_by_tags[a] > userData.views_by_tags[b] ? a : b);
+  console.log(maxViewTag);
+  `
+  const favouriteTopic = document.getElementById("favourite-topic");
+  const favouriteTopicPercent = document.getElementById("favourite-topic-percent");
+  const favouriteTopicStrokeDasharray = document.getElementById("favourite-topic-troke-dasharray");
+  favouriteTopic.innerHTML = colorData[maxViewTag].name+"<br>"+userData.views_by_tags[maxViewTag]+" views";
+  `
+
+  for (const value in userData.views_by_tags){
+    userData.views_by_tags[value] = (100*userData.views_by_tags[value]/totalTags).toFixed(2);
+  }
+  const tags = userData.views_by_tags;
+  const tagsChart = document.getElementById("tags-chart");
+`
+  for (let key in tags){
+    if (key != "hot"){
+      const tagName = colorData[key].name;
+      const tagColor = colorData[key].background_color; 
+      tagsChart.innerHTML +=
+      ;
+      const topicColorBar =  document.getElementById("bar-progress-"+key);
+      topicColorBar.style.width = String(tags[key])+"%";
+    }
+  }
+
+
+  if (userData.views_by_tags[maxViewTag] == Math.ceil(userData.views_by_tags[maxViewTag])){
+    favouriteTopicPercent.innerHTML = String(Math.ceil(userData.views_by_tags[maxViewTag]))+"%";
+  }
+  else{
+    favouriteTopicPercent.innerHTML = String(userData.views_by_tags[maxViewTag])+"%";
+  }
+  
+  favouriteTopicStrokeDasharray.style.strokeDasharray = String(userData.views_by_tags[maxViewTag])+" 100";
+  `
+
+  var yearChart    = document.getElementById('year-chart').getContext('2d'),
+	monthChart    = document.getElementById('month-chart').getContext('2d'),
+	weekChart    = document.getElementById('week-chart').getContext('2d'),
+
+	yearTopicChart = document.getElementById('year-topic-chart').getContext('2d'),
+	monthTopicChart    = document.getElementById('month-topic-chart').getContext('2d'),
+	weekTopicChart    = document.getElementById('week-topic-chart').getContext('2d'),
+
+    gradient = monthChart.createLinearGradient(0, 0, 0, 450);
+</script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js'></script>
+  <script  src="{% static 'js/admin-page-report.js' %}"></script>
+
+
+</body>
+</html>

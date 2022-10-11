@@ -1,0 +1,1 @@
+from .scrap_forms import Contact

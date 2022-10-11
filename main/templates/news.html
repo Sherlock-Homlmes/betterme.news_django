@@ -1,0 +1,565 @@
+{% load static %}
+<html lang="vi">
+  <head>
+    <title>BetterMe.news: Khám phá tri thức</title>
+    <link rel="icon" href="{% static '/images/logo2.png' %}" type="image/icon type">
+    
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta charset="utf-8" />    
+    <meta name="keywords" content="kiến thức,khoa học,công nghệ,kiến thức đời sống,tri thức,lịch sử,địa lý,  học tập,discord,cộng đồng,community,group,nhóm,swm,study with me">
+    <meta name="description" content="Nơi cung cấp, tổng hợp những kiến thức khoa học mới nhất.
+    Những kiến thức đời sống bổ ích, được chọn lọc.">
+
+    <meta name="author" content="BetterMe">
+    <meta name="generator" content="BetterMe">
+
+    <!------------ base-uri ------------------->
+    <meta http-equiv="Content-Security-Policy" content="base-uri 'self'">
+    <base href="https://betterme.news/">
+
+    <!----------------open graph------------------------>
+    <meta property="og:title" content="Khám phá tri thức">
+    <meta property="og:type" content="article"/>
+    <meta property="og:description" content="Nơi cung cấp, tổng hợp những kiến thức khoa học mới nhất.
+    Những kiến thức đời sống bổ ích, được chọn lọc." />
+    <meta property="og:site_name" content="BetterMe">
+    <meta property="og:locate" content="vi">
+    <meta property="og:image" content="{% static '/images/logo4.png' %}">
+
+
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+    <!------------------style------------------------------>
+
+    <link rel="stylesheet" href="{% static '/css/boostrap/5.1.3.css' %}">
+    <link rel="stylesheet" href="{% static '/css/tailwind/1.5.1.css' %}">
+    <link rel="stylesheet" href="{% static '/css/news.css' %}">
+    <link rel="stylesheet" href="{% static '/css/slideshow.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200;300;400;500;900&display=swap" rel="stylesheet">    <!-----------------------script---------------------------->
+
+    {% comment %} <meta http-equiv="refresh" content="300"> {% endcomment %}
+
+  </head>
+  
+  
+  
+  <body>
+
+    {% comment %} ---------------------Top nav------------------- {% endcomment %}
+
+<nav class="navbar navbar-expand-sm navbar-dark sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/" style="font-size:large;font-weight:900">
+      <img
+        src="{% static 'images/logo2.png' %}"
+        alt="Page Logo"
+        style="max-width: 35px;display:inline;"
+      />
+      BETTERME
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapsibleNavbar"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <form id="search-form">
+      <div class="flex">
+          <button id="topic" data-dropdown-toggle="dropdown" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button">All<svg aria-hidden="true" class="ml-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></button>
+          <div id="dropdown" class="z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 hidden" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(4.8px, 72px, 0px);" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom">
+              <ul id="choose-topic" class="text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
+                {% for big_topic,big_topic_value in topic_type.items %}
+                <li class="inline-flex py-3 px-4 w-full" style="
+                background-color: #333366;
+                color:#fff;
+                ">
+                    {{big_topic_value.name}}
+                </li>
+                  {% for topic,value in big_topic_value.fields.items %}
+                  <li>
+                    <button type="button" class="inline-flex py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                      {{value.name}}
+                    </button>
+                  </li>
+                  {% endfor %}
+                {% endfor %} 
+              </ul>
+          </div>
+            <div class="relative w-full">
+              <input type="search" id="search-input" data-dropdown-toggle="dropdownSearch" class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Search..." required="">
+              <button type="submit" class="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                  <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                  <span class="sr-only" id="search">Search</span>
+              </button>
+
+              <!-- Dropdown menu -->
+              <div id="dropdownSearch" class="hidden z-10 w-full bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
+                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownSearchButton">
+                  <li></li>
+                </ul>
+                <a href="#" class="block py-2 text-sm font-medium text-center text-gray-900 bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white">
+                  <div class="inline-flex items-center ">
+                    <svg class="mr-2 w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path></svg>
+                      View all
+                  </div>
+                </a>
+              </div>  
+            </div>
+      </div>
+  </form>
+
+    {% if current_user %}
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+        <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+          <span class="sr-only">Open user menu</span>
+          <img class="w-10 h-10 rounded-full" src="{{current_user.avatar_url}}" alt="user photo">
+        </button>
+        <!-- Dropdown menu -->
+        <div class="z-50 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 hidden" id="user-dropdown" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(606px, 82px, 0px);">
+          <div class="py-3 px-4">
+            <span class="block text-sm text-gray-900 dark:text-white">{{current_user.username}}</span>
+          </div>
+          <ul class="py-1" aria-labelledby="user-menu-button">
+            <li>
+              <a href="/account" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+            </li>
+            {% comment %} 
+            <li>
+              <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+            </li> 
+            {% endcomment %}
+            {% if ad_check == True %}
+            <li>
+              <a href="/admin-page/report" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Admin page</a>
+            </li>  
+            {% endif %}
+            <li>
+              <a href="/logout" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+            </li>
+          </ul>
+        </div>
+
+    </nav>
+
+
+
+    {% else %}
+    <ul class="nav navbar-nav navbar-right">
+      <li style="color:white;">
+        <a data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor:pointer"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+      </li>
+    </ul>
+    {% endif %}
+
+
+  </div>
+</nav>
+
+  {% comment %} ---------------------Body------------------- {% endcomment %}
+
+
+
+<div id="body">
+  <div class="flex-container">
+
+    <!------ left bar ------>
+    <div class="flex-item-left">
+      <div class="leftbar" style="margin-right: 10px;">
+        <div class="navbox sidenav clearfix">
+          <div id="accordion-open" data-accordion="open">
+
+            {% for big_topic,big_topic_value in topic_type.items %}
+
+            <div id="accordion-open-heading-{{ forloop.counter }}" class="accordion-open-heading">
+              <button type="button" class="flex items-center w-full justify-between p-5 font-medium text-left dark:border-gray-700 dark:hover:bg-gray-800 bg-gray-100 dark:bg-gray-800 text-white" 
+              data-accordion-target="#accordion-open-body-{{ forloop.counter }}" aria-expanded="true" aria-controls="accordion-open-body-{{ forloop.counter }}"
+              style="background:url(https://cdn.glitch.global/6fd3f7f0-12bd-4606-b2e7-06869ec1601c/homebg.e52b5cdf24f83bcd55f9f1318855f2ef.png?v=1655368479082);
+              border-radius:10px;">
+                <span class="flex items-center">
+                    {{big_topic_value.name}}</span>
+                <svg data-accordion-icon="" class="w-6 h-6 rotate-180 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              </button>
+            </div>
+            <div id="accordion-open-body-{{ forloop.cpyounter }}" class="accordion-open-body" aria-labelledby="accordion-open-heading-{{ forloop.counter }}">
+              {% for topic,value in big_topic_value.fields.items %}
+              <div class="l2 tax-{{topic}}">
+                <a href="/{{topic}}/page-1/">
+                  <img
+                    src="{% static '/images/' %}{{ value.image }}"
+                    alt="{{topic}}"
+                    style="max-width:25px;display:inline;"
+                  />
+                  {{ value.name }}
+                </a>
+              </div>
+              
+              {% endfor %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!------ middle bar ------>
+    <div class="flex-item-middle">
+      <!-- slider -->
+      <div class="slider" id="slider"> 
+        <a class="thumb" href="/{{hot_first.name}}/">
+        <div class="slide active">
+          <img src="{{ hot_first.slide_show_link }}" alt="{{ hot_first.title }}">
+          <div class="info">
+            <center><h2>{{ hot_first.title }}</h2></center>
+  
+          </div>
+        </div>
+        </a>
+  
+        {% for hot in hot_list %}
+        <a class="thumb" href="/{{hot.name}}/">
+          <div class="slide">
+          <img src="{{ hot.slide_show_link }}" alt="{{ hot.title }}">
+          <div class="info">
+            <center><h2>{{ hot.title }}</h2></center>
+          </div>
+        </div>
+      </a>
+        {% endfor %}
+  
+        <div class="slide-navigation" id="slide-navigation">
+          <i class="fas fa-chevron-left prev-btn"></i>
+          <i class="fas fa-chevron-right next-btn"></i>
+        </div>
+        <div class="navigation-visibility">
+          <div class="slide-icon active"></div>
+          <div class="slide-icon"></div>
+          <div class="slide-icon"></div>
+        </div>
+      </div>
+      <!-- post -->
+      {% for post in post_list %}
+
+      <a href="/{{post.name}}/" class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+        <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" 
+        data-src="{{ post.thumbnail_link }}"
+        src="{{ post.thumbnail_link }}"
+        alt="{{ post.title }}"
+        style="max-width:200px;">
+        <div class="flex flex-col justify-between p-4 leading-normal">
+            <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+              {{ post.title }}
+            </h5>
+            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+              {{post.description}}
+            </p>
+        </div>
+      </a>
+      {% endfor %}
+
+    </div>
+
+    <!------ right bar ------>
+    <div class="flex-item-right">
+      <!--header-->
+      <div class="p-4 max-w-md bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+        <div class="flex justify-between items-center mb-4">
+            <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Most view</h5>
+            <!--a href="#" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+                View all
+            </a-->
+       </div>
+      
+      <!--elements-->
+        <div class="flow-root">
+            <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+              {% for most_view in most_view_list %}      
+
+
+              <a href="/{{ most_view.name }}/" class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" 
+                src="{{ most_view.thumbnail_link }}" alt="{{ most_view.name }}"
+                style="max-width:140px">
+                <div class="flex flex-col justify-between p-4 leading-normal">
+                    <p class="mb-3 text-sm font-semibold text-gray-700 dark:text-gray-400">
+                      {{ most_view.title }}
+                    </p>
+                </div>
+              </a>
+
+              {% endfor %}
+              
+            </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- next|prev page -->
+  <center>
+    {% if page > 1 %}
+    <a href="/page-{{ page | add:-1 }}/" rel="prev">
+      <button class="page-btn">
+        Quay lại
+      </button>
+    </a>
+    {% endif %}
+    {% if next_page %}
+    <a href="/page-{{ page | add:1 }}/" rel="next">
+      <button class="page-btn">
+        Xem thêm
+      </button>
+    </a>
+    {% endif %}
+  </center>
+
+</div>
+
+  {% comment %} ---------------------Footer------------------- {% endcomment %}
+<div class="page-wrapper">
+  <div id="waterdrop"></div>
+  <footer>
+    <div class="footer-top">
+      <div class="pt-exebar">
+
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-12 col-sm-12 footer-col-3">
+            <div class="widget footer_widget">
+              <h5 class="footer-title">Contact</h5>
+              <div class="gem-contacts">
+                <div class="gem-contacts-item gem-contacts-address">
+                  Địa chỉ liên hệ :
+                </div>
+                <div class="gem-contacts-item gem-contacts-Phone"><i class="fa fa-envelope" aria-hidden="true">
+                </i> Gmail: <a href="">bettermie2303@gmail.com</a></div>
+                <div class="gem-contacts-item gem-contacts-phone"><i class="fa fa-phone" aria-hidden="true">
+                </i> Phone: <a href="">+84332731520</a></div>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+            <div class="row">
+              <div class="col-6 col-lg-6 col-md-6 col-sm-6">
+                <div class="widget footer_widget">
+                  <h5 class="footer-title">Recent News</h5>
+                  <ul class="posts  styled">
+
+                    <li class="clearfix gem-pp-posts">
+                      <div class="gem-pp-posts-text">
+                        <div class="gem-pp-posts-date">
+                          <a href="">About us</a>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="clearfix gem-pp-posts">
+                      <div class="gem-pp-posts-text">
+                        <div class="gem-pp-posts-date">
+                          <a href="">Điều khoản sử dụng</a>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="clearfix gem-pp-posts">
+                      <div class="gem-pp-posts-text">
+                        <div class="gem-pp-posts-date">
+                          <a href="">Bảo mật</a>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-6 col-lg-6 col-md-6 col-sm-6">
+                <div class="widget">
+                  <h5 class="footer-title">Email Us</h5>
+                  <div class="textwidget">
+                    <div role="form" class="wpcf7" id="wpcf7-f4-o1" lang="en-US" dir="ltr">
+
+                      
+                      <form method="POST" action="/contact-form" target="_blank" class="wpcf7-form">
+                        {% csrf_token %}
+                        <div class="contact-form-footer">
+                          <p><span class="wpcf7-form-control-wrap your-first-name"><input type="text" name="name" id="name" value="" size="40" class="wpcf7-form-control wpcf7-text" aria-invalid="false" placeholder="Tên" required ></span></p>
+                          <p><span class="wpcf7-form-control-wrap your-email_1"><input type="email" name="email" id="email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-email" aria-invalid="false" placeholder="Email" required></span></p>
+                          <p><span class="wpcf7-form-control-wrap your-message"><textarea name="message" id="message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false" placeholder="Lời nhắn" required></textarea></span></p>
+                          <div><input type="button" value="Send" class="wpcf7-form-control wpcf7-submit" id="send-contact" onclick="sendContact()"><span class="ajax-loader"></span></div>
+                        </div>
+                      </form>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-3 col-md-5 col-sm-12 footer-col-4">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-md-3">
+            <div class="footer-site-info">2022 © <a href="#" target="_blank">Betterme.news </a></div>
+          </div>
+
+          <div class="col-md-6">
+            <nav id="footer-navigation" class="site-navigation footer-navigation centered-box" role="navigation">
+              <ul id="footer-menu" class="nav-menu styled clearfix inline-inside">
+                <li id="menu-item-26" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-26"><a href="">Hỗ trợ</a></li>
+                <li id="menu-item-27" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27"><a href="">Hệ sinh thái</a></li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="col-md-3">
+            <div id="footer-socials">
+              <div class="socials inline-inside socials-colored">
+
+                <a href="" target="_blank" title="Facebook" class="socials-item">
+                  <i class="fab fa-facebook-f facebook"></i>
+                </a>
+                <a href="" target="_blank" title="YouTube" class="socials-item">
+                  <i class="fab fa-youtube youtube"></i>
+                </a>
+                <a href="https://discord.gg/betterme" target="_blank" title="Discord" class="socials-item">
+                  <i class="fab fa-discord discord"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  style="background: url('https://sweetalert2.github.io/images/nyan-cat.gif') left top no-repeat rgba(0, 0, 123, 0.4); overflow-y: auto;">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+        <div class="modal-header text-center">
+            <h3 class="modal-title w-100"><strong>Login</strong></h3>
+        </div>
+        <div class="modal-body" id="login-modal-body">
+            <center>
+            <a class="btn btn-primary social-login disabled" href="#!" role="button">
+                <i class="fab fa-google me-2"></i>Google
+            </a>
+            <br>
+            <a class="btn btn-primary social-login disabled" href="#!" role="button">
+                <i class="fab fa-facebook me-2"></i>Facebook
+            </a>
+            <br>
+            <a class="btn btn-primary social-login" href="{{OAUTH_URL}}" role="button">
+                <i class="fab fa-discord me-2"></i>Discord
+            </a>
+            <br>
+            </center>
+        </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/slideshow.js' %}"></script> 
+<script src="https://unpkg.com/flowbite@1.5.1/dist/flowbite.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://daniellaharel.com/raindrops/js/raindrops.js"></script>
+<script> jQuery('#waterdrop').raindrops({color:'#1c1f2f', canvasHeight:150, density: 0.1, frequency: 20});</script>    
+<script src='https://cdn.jsdelivr.net/npm/meilisearch@latest/dist/bundles/meilisearch.umd.js'></script>
+<script src="{% static 'js/meilisearch_news.js' %}"></script> 
+
+<script>
+  ///// alert
+  // contact
+  contactBtn = document.getElementById("send-contact");
+  const successAlertMessage = {
+    title: 'Cảm ơn bạn đã liên hệ với chúng tôi',
+    width: 600,
+    padding: '3em',
+    color: '#716add',
+    background: '#fff url(https://sweetalert2.github.io/images/trees.png)',
+    backdrop: `
+      rgba(0,0,123,0.4)
+      url("https://sweetalert2.github.io/images/nyan-cat.gif")
+      left top
+      no-repeat
+    `
+  }
+  let timerInterval
+  const failAlertMessage = {
+    title: 'Đã có lỗi trong quá trình gửi. Vui lòng kiểm tra lại thông tin. Rất xin lỗi bạn vì sự bất tiện này',
+    timer: 10000,
+    timerProgressBar: true,
+    willClose: () => {
+      clearInterval(timerInterval)
+    }
+  }
+  
+  // send contact form
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  }
+  function sendContact(){
+    contactBtn.disabled = true;
+
+    $.ajaxSetup({
+      headers: { "X-CSRFToken": getCookie("csrftoken") }
+    });
+    $.ajax({
+      type: 'POST',
+      url: '/contact-form',
+      data:{
+        name:$('#name').val(),
+        email:$('#email').val(),
+        message:$('#message').val(),
+      },
+      success: function(request){
+          console.log(request,typeof(request));
+          if (request == "valid"){
+            Swal.fire(successAlertMessage);
+            $('#name').val("")
+            $('#email').val("")
+            $('#message').val("")
+            contactBtn.disabled = false;
+          }
+          else {
+            Swal.fire(failAlertMessage);
+            contactBtn.disabled = false;
+          }
+
+      },
+      error: function(error){
+        Swal.fire(failAlertMessage);
+        contactBtn.disabled = false;
+      }
+    })
+  }
+
+
+</script>
+
+</body>
+
+
+</html>

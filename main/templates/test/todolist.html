@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - To Do List UI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="{% static 'css/todolist.css' %}">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="app-container" id="taskList">
+  <h1 class="app-header">TO DO LIST</h1>
+  <div class="add-task">
+    <input type="text" autocomplete="off" placeholder="Add New Task" v-model="tasks.name" @keyup.enter="newItem" class="task-input">
+		<input type="submit" value="" class="submit-task" @click="newItem" title="Add Task" id="add-task">
+  </div>
+  <ul class="task-list">
+		<li class="task-list-item" v-for="task in tasks">
+			<label class="task-list-item-label">
+        <input type="checkbox">
+				<span style="color: #fff">[[task.name]]</span>
+			</label>
+			<span @click="delItem(task)" class="delete-btn" title="Delete Task">[[task.del]]</span>
+		</li>
+	</ul>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js'></script>
+  <script>
+
+    let task = "{{data | safe}}";
+    //console.log(task);
+    task = task.replaceAll("\'", '\"');
+    task = task.replace("ObjectId(", '');
+    task = task.replace(")", '');
+    console.log(task);
+
+    const obj = JSON.parse(task).todolist;
+
+    function take_task(){
+      let tasks = [];
+      for (const name of obj){
+        tasks.push({name});
+      };
+      return tasks;
+    };
+
+    const addTaskBtn = document.getElementById('add-task');
+    const delTaskBtn = document.getElementsByClassName('delete-btn');
+
+    function addTask(taskname){
+    $.ajax({
+        type: 'GET',
+        url: '/todolist/add-task/'+taskname,
+        success: function(){
+            console.log('added ',taskname,' to todolist')
+        },
+        error: function(error){
+            console.log('load fail');
+        }
+    })}
+
+    function delTask(taskname){
+    $.ajax({
+        type: 'GET',
+        url: '/todolist/del-task/'+taskname,
+        success: function(){
+            console.log('del ',taskname,' from todolist')
+        },
+        error: function(error){
+            console.log('load fail');
+        }
+    })}
+
+    new Vue ({
+      beforeCreate: function(){
+        console.log(this.$tasks);
+      },
+      
+      el: '#taskList',
+      data: {
+        title: 'to do list',
+        tasks:  take_task()
+      },
+
+      methods: {
+        newItem: function() {
+          if (!this.tasks?.name) {
+            return
+          }
+
+          addTaskBtn.disable = true;
+          addTask(this.tasks.name);
+          addTaskBtn.disable = false;
+
+          this.tasks.push ( {
+            name: this.tasks.name,
+            del: ''
+          });
+          this.tasks.name = "";
+        },
+        delItem: function (task) {
+
+          delTaskBtn.disable = true;
+          delTask(task.name);
+          delTaskBtn.disable = false;
+
+          this.tasks.splice(this.tasks.indexOf(task), 1)
+        }
+      },
+      delimiters: ['[[', ']]']
+    }, 
+    )
+  </script>
+
+</body>
+</html>
